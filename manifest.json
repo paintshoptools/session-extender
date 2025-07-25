@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "SessionExtender",
+  "version": "1.0",
+  "description": "Run ExtendSession every 5 minutes +/- random delay",
+  "permissions": ["storage", "scripting", "tabs"],
+  "background": {
+	"service_worker": "background.js"
+  },
+  "action": {
+	"default_popup": "popup.html",
+	"default_icon": {
+	  "48": "icon.png"
+	}
+  },
+  "content_scripts": [
+	{
+	  "matches": ["*://*.example.com/*"],
+	  "js": ["content.js"],
+	  "run_at": "document_idle"
+	}
+  ],
+  "host_permissions": ["*://*.example.com/*"]
+}
