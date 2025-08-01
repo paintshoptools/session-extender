@@ -3,7 +3,7 @@
   "name": "SessionExtender",
   "version": "1.0",
   "description": "Run ExtendSession every 5 minutes +/- random delay",
-  "permissions": ["storage", "scripting", "tabs"],
+  "permissions": ["storage", "scripting", "tabs", "alarms"],
   "background": {
 	"service_worker": "background.js"
   },
@@ -19,6 +19,12 @@
 	  "js": ["content.js"],
 	  "run_at": "document_idle"
 	}
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["<all_urls>"]
+    }
   ],
   "host_permissions": ["*://*.example.com/*"]
 }
