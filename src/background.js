@@ -2,7 +2,7 @@
 const ALARM_NAME = "ExtendSessionAlarm";
 const MAX_INTERVAL = 1;
 const MIN_INTERVAL = 1;
-const TARGET_URL = "*://*.example.com/*"
+const TARGET_URL = "*://*.acenet.aceservices.com/*"
 
 //FUNCTIONS
 function updateBadge(enabled) {
