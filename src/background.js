@@ -11,7 +11,6 @@ function updateBadge(enabled) {
     chrome.action.setBadgeBackgroundColor({ color: "#4CAF50" }); // green
   } else {
     chrome.action.setBadgeText({ text: "" });
-    chrome.action.setBadgeBackgroundColor({ color: "#99A1AF" });
   }
 }
 
