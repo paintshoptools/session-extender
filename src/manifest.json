@@ -5,20 +5,20 @@
   "description": "Run ExtendSession every 5 minutes +/- random delay",
   "permissions": ["storage", "scripting", "tabs", "alarms"],
   "background": {
-	"service_worker": "background.js"
+    "service_worker": "background.js"
   },
   "action": {
-	"default_popup": "popup.html",
-	"default_icon": {
-	  "48": "icon.png"
-	}
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon.png"
+    }
   },
   "content_scripts": [
-	{
-	  "matches": ["*://*.example.com/*"],
-	  "js": ["content.js"],
-	  "run_at": "document_idle"
-	}
+    {
+      "matches": ["*://*.example.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
   ],
   "web_accessible_resources": [
     {
@@ -26,5 +26,5 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "host_permissions": ["*://*.example.com/*"]
+  "host_permissions": ["*://*.acenet.aceservices.com/*"]
 }
