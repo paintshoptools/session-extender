@@ -13,13 +13,6 @@
       "48": "icon.png"
     }
   },
-  "content_scripts": [
-    {
-      "matches": ["*://*.example.com/*"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
-    }
-  ],
   "web_accessible_resources": [
     {
       "resources": ["injected.js"],
