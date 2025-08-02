@@ -2,7 +2,7 @@
 const ALARM_NAME = "ExtendSessionAlarm";
 const MAX_INTERVAL = 1;
 const MIN_INTERVAL = 1;
-const TARGET_URL = "*://*.acenet.aceservices.com/*"
+const TARGET_URL = "*://*.acenet.aceservices.com/*";
 
 //FUNCTIONS
 function updateBadge(enabled) {
@@ -15,26 +15,28 @@ function updateBadge(enabled) {
 }
 
 function createAlarm() {
-	const delay = Math.random() * (MAX_INTERVAL - MIN_INTERVAL + 1) + MIN_INTERVAL;
-	chrome.alarms.create(ALARM_NAME, {delayInMinutes: delay}, console.log('Alarm Created, delay: ' + delay));
+  const delay =
+    Math.random() * (MAX_INTERVAL - MIN_INTERVAL + 1) + MIN_INTERVAL;
+  chrome.alarms.create(
+    ALARM_NAME,
+    { delayInMinutes: delay },
+    console.log("Alarm Created, delay: " + delay),
+  );
 }
 
-function clearAlarm () {
-	chrome.alarms.clear(
-		ALARM_NAME,
-		console.log('Cleared Alarm')
-	)
+function clearAlarm() {
+  chrome.alarms.clear(ALARM_NAME, console.log("Cleared Alarm"));
 }
 
 function injectScript() {
-	chrome.tabs.query({url: TARGET_URL}, (tabs) => {
-		for (const tab of tabs) {
-			chrome.scripting.executeScript({
-				target: {tabId: tab.id},
-				files: ['injector.js']
-			})
-		}
-	});
+  chrome.tabs.query({ url: TARGET_URL }, (tabs) => {
+    for (const tab of tabs) {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: ["injector.js"],
+      });
+    }
+  });
 }
 
 //LISTENERS
@@ -49,9 +51,9 @@ chrome.storage.onChanged.addListener((changes) => {
     const enabled = changes.enabled.newValue;
     updateBadge(enabled);
     if (enabled) {
-		createAlarm();
+      createAlarm();
     } else {
-		clearAlarm();
+      clearAlarm();
     }
   }
 });
@@ -60,19 +62,19 @@ chrome.storage.onChanged.addListener((changes) => {
 chrome.runtime.onStartup.addListener(() => {
   chrome.storage.local.get(["enabled"], (result) => {
     const enabled = result.enabled;
-	updateBadge(enabled);
-	if(enabled) {
-		createAlarm();
-	}
+    updateBadge(enabled);
+    if (enabled) {
+      createAlarm();
+    }
   });
 });
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.get(["enabled"], (result) => {
     const enabled = result.enabled;
-	updateBadge(enabled);
-	if(enabled) {
-		createAlarm();
-	}
+    updateBadge(enabled);
+    if (enabled) {
+      createAlarm();
+    }
   });
 });
